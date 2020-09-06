@@ -53,7 +53,7 @@ export default function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/features" component={FeaturePage} />
-        <Route exact path="/workspace" render={(props) => (
+        <Route exact path="/notebook" render={(props) => (
           (<WorkspaceNotebook {...props} />)
         )}/>
         <Route path="" component={NotFoundPage} />

@@ -1,0 +1,15 @@
+.load-state-container {
+    width: 100%;
+    text-align: center;
+}
+
+.load-state {
+    z-index: 1;
+    padding: 5px 0 5px 50px;
+    background: url(http://build.gzwhir.com/Whir_WEB/jsdemo/loading_1/images/loading_red.gif) no-repeat 10px top;
+    left: 45%;
+    top: 5%;
+    width: 120px;
+    height: 40px;
+    position: fixed;
+}

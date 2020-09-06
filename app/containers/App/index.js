@@ -16,8 +16,10 @@ import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+import WorkspaceNotebook from 'containers/WorkspaceNotebook'
 
 import GlobalStyle from '../../global-styles';
+import './style.css';
 
 const AppWrapper = styled.div`
   max-width: calc(768px + 16px * 2);
@@ -29,22 +31,32 @@ const AppWrapper = styled.div`
 `;
 
 export default function App() {
+  // return (
+  //   <AppWrapper>
+  //     <Helmet
+  //       titleTemplate="%s - React.js Boilerplate"
+  //       defaultTitle="React.js Boilerplate"
+  //     >
+  //       <meta name="description" content="A React.js Boilerplate application" />
+  //     </Helmet>
+  //     <Header />
+  //     <Switch>
+  //       <Route exact path="/" component={HomePage} />
+  //       <Route path="/features" component={FeaturePage} />        <Route path="" component={NotFoundPage} />
+  //     </Switch>
+  //     <Footer />
+  //     <GlobalStyle />
+  //   </AppWrapper>
+  // );
+
   return (
-    <AppWrapper>
-      <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
-      >
-        <meta name="description" content="A React.js Boilerplate application" />
-      </Helmet>
-      <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/features" component={FeaturePage} />
+        <Route exact path="/workspace" render={(props) => (
+          (<WorkspaceNotebook {...props} />)
+        )}/>
         <Route path="" component={NotFoundPage} />
       </Switch>
-      <Footer />
-      <GlobalStyle />
-    </AppWrapper>
   );
 }

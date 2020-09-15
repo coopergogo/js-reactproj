@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+</head>
+<body>
+    <div><h1 style="text-align:center"> Welcome iframe!</h1></div>
+
+    <div style="text-align:center">
+        <button id="send_msg"> Send message to parent</button>
+        <div id="rcv_msg"></div>
+    </div>
+    <script type="text/javascript">
+        // send msg
+        document.getElementById('send_msg').onclick = function() {
+            alert("send message to parent");
+            parent.postMessage({
+                'action': 'call-parent',
+                'message': 'Message text from iframe.'
+            },'*'); //window.postMessage
+        }
+
+        // receive msg, listener
+        function receiveMessageFromIndex ( event ) {
+            console.log( 'iframe received message', event.data, event.origin, event.source);
+            alert(event.data.message);
+            document.getElementById('rcv_msg').innerHTML = event.data.message;
+
+        }
+        window.addEventListener("message", receiveMessageFromIndex, false);
+    </script>
+
+
+</body>
+</html>

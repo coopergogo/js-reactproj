@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+</head>
+<body>
+    <div><h1 style="text-align:center"> Welcome iframe!</h1></div>
+
+    <div style="text-align:center">
+        <button id="send_msg"> Call parent</button>
+        <div id="rcv_msg" style="height: 20px"></div>
+    </div>
+    <script type="text/javascript">
+
+        // send msg
+        document.getElementById('send_msg').onclick = function() {
+            console.log("send message to parent");
+            const msg = parent.callHandlerMain();
+            console.log('msg from parent:', msg);
+            document.getElementById('rcv_msg').innerHTML = msg;
+        }
+
+        function callHandlerIframe () {
+          return "iframe handler!"
+        }
+
+    </script>
+
+</body>
+</html>

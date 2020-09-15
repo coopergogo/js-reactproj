@@ -11,7 +11,8 @@ import Button from "components/Button";
 
 import './style.css';
 
-const htmlCode = require('./iframe.html')
+const htmlCode03 = require('./iframe_03.html')
+const htmlCode04 = require('./iframe_04.html')
 
 export function sendMsgToIframe() {
   alert("send message to iframe");
@@ -52,6 +53,11 @@ export class WorkspaceNotebook extends React.PureComponent {
     }
     // listener message
     window.addEventListener("message", receiveMessageFromIndex, false);
+
+    window.callHandlerMain = function ( ) {
+      console.log( 'main received call.');
+      return 'token-xxx';
+    }
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -96,22 +102,35 @@ export class WorkspaceNotebook extends React.PureComponent {
               frameBorder="0"
               onLoad= {iframeOnLoad.bind(this)}
             /> */}
-            <div><h1 style={{textAlign:"center"}}> Welcome Main!</h1></div>
-            <Button onClick={sendMsgToIframe.bind(this)}>Send message to iframe</Button>
-            <div style={{textAlign: "center"}}>
-              <p>main received message : [{this.state.msg}]</p>
+
+            <div style={{width:'100%', height:'20%', overflow:'visible'}}>
+              <div><h1 style={{textAlign:"center"}}> Welcome Main!</h1></div>
+              <Button onClick={sendMsgToIframe.bind(this)}>Send message to iframe</Button>
+              <div style={{textAlign: "center"}}>
+                <p>main received message : [{this.state.msg}]</p>
+              </div>
             </div>
 
             <iframe
               id="iframe_03"
               name="iframe_03"
-              style={{width:'100%', height:'50%', overflow:'visible'}}
+              style={{width:'100%', height:'20%', overflow:'visible'}}
               ref="iframe"
-              srcDoc= {htmlCode}
+              srcDoc= {htmlCode03}
               width="100%"
               scrolling="no"
               frameBorder="0"
-              onLoad= {iframeOnLoad.bind(this)}
+            />
+
+            <iframe
+              id="iframe_04"
+              name="iframe_04"
+              style={{width:'100%', height:'20%', overflow:'visible'}}
+              ref="iframe"
+              srcDoc= {htmlCode04}
+              width="100%"
+              scrolling="no"
+              frameBorder="0"
             />
 
           </Paper>
